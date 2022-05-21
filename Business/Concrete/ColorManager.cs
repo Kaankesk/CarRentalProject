@@ -30,7 +30,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.EntityDeleted);
         }
 
-        public IDataResult<Color> Get(int colorId)
+        public IDataResult<Color> GetById(int colorId)
         {
             return new SuccessDataResult<Color>(_colorDal.Get(c => c.Id == colorId));
         }

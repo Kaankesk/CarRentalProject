@@ -25,19 +25,27 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult Delete(User customer)
+        public IResult Delete(User user)
         {
-            throw new NotImplementedException();
+            _userDal.Delete(user);
+            return new SuccessResult();
+
         }
 
-        public IDataResult<User> GetAll()
+        public IDataResult<List<User>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<User>>(_userDal.GetAll());
         }
 
-        public IResult Update(User customer)
+        public IDataResult<User> GetById(int userId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<User>(_userDal.Get(u=>u.Id==userId));
+        }
+
+        public IResult Update(User user)
+        {
+            _userDal.Update(user);
+            return new SuccessResult();
         }
     }
 }

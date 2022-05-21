@@ -27,17 +27,25 @@ namespace Business.Concrete
 
         public IResult Delete(Rental rental)
         {
-            throw new NotImplementedException();
+            _rentalDal.Delete(rental);
+            return new SuccessResult();
         }
 
-        public IDataResult<Rental> GetAll()
+        public IDataResult<List<Rental>> GetAll()
         {
-            throw new NotImplementedException();
+            
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
+        }
+
+        public IDataResult<Rental> GetById(int rentalId)
+        {
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == rentalId));
         }
 
         public IResult Update(Rental rental)
         {
-            throw new NotImplementedException();
+            _rentalDal.Update(rental);
+            return new SuccessResult();
         }
     }
 }
