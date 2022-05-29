@@ -17,6 +17,6 @@ namespace Business.Constant
 
         //Error Messages
         public static string AddError = "Entity is not added";
-
+        public static string CarImageLimitError = "Car image limit per car has exceeded the limit";
     }
 }
