@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.DTOs
+namespace Core.Entities.DTOs
 {
     public class OperationClaimDto : IDto
     {

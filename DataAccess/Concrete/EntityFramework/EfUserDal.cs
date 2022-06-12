@@ -1,8 +1,8 @@
 ﻿using Core.DataAccess.EntityFramework;
 using Core.Entities.Concrete;
+using Core.Entities.DTOs;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +22,20 @@ namespace DataAccess.Concrete.EntityFramework
                  * FROM UserOperationClaims
                  *      JOIN OperationClaims ON UserOperationClaims.OperationClaimId = OperationClaims.Id
                  */
-                var result = from userOperationClaim in context.UserOperationClaims
-                             join operationClaim in context.OperationClaims
-                                on userOperationClaim.OperationClaimId  equals operationClaim.Id
+
+                //var result = from userOperationClaim in context.UserOperationClaims
+                //             join operationClaim in context.OperationClaims
+                //                on userOperationClaim.OperationClaimId  equals operationClaim.Id
+                //             where userOperationClaim.UserId == user.Id
+                //             select new OperationClaimDto { Id=operationClaim.Id, Name = operationClaim.Name };
+                //return result.ToList();
+                var result = from operationClaim in context.OperationClaims
+                             join userOperationClaim in context.UserOperationClaims
+                                 on operationClaim.Id equals userOperationClaim.OperationClaimId
                              where userOperationClaim.UserId == user.Id
-                             select new OperationClaimDto { Id=operationClaim.Id, Name = operationClaim.Name };
+                             select new OperationClaimDto { Id = operationClaim.Id, Name = operationClaim.Name };
                 return result.ToList();
+
 
             }
         }
