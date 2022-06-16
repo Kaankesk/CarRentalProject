@@ -37,9 +37,8 @@ namespace Business.Concrete
             {
                 return new ErrorDataResult<User>(Messages.UserDoesNotExist);
             }
-            byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(userForLoginDto.Password, out passwordHash, out passwordSalt);
-            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password,passwordHash,passwordSalt))
+
+            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.Data.PasswordHash, userToCheck.Data.PasswordSalt))
             {
                 return new ErrorDataResult<User>(Messages.WrongPassword);
             }
